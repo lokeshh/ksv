@@ -239,7 +239,7 @@ function App() {
           {/* Selector Row */}
           <div className="selectors-row">
             <div className="selector-group">
-              <label>Prakaraṇa (प्रकरणम्)</label>
+              <label>प्रकरणम्</label>
               <select 
                 className="custom-select" 
                 value={activeSutra.prakaranaId} 
@@ -254,7 +254,7 @@ function App() {
             </div>
 
             <div className="selector-group">
-              <label>Pāda (पादः)</label>
+              <label>पादः</label>
               <select 
                 className="custom-select" 
                 value={activeSutra.padaId} 
@@ -271,7 +271,7 @@ function App() {
             </div>
 
             <div className="selector-group">
-              <label>Sūtra (सूत्रम्)</label>
+              <label>सूत्रम्</label>
               <select 
                 className="custom-select" 
                 value={activeSutra.sutraNo} 
@@ -294,7 +294,7 @@ function App() {
                   ? `${activeSutra.prakaranaNameDevanagari} • ${activeSutra.padaNameDevanagari}` 
                   : `${transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, 'iast')} • ${transliterateIfNeeded(activeSutra.padaNameDevanagari, 'iast')}`}
               </div>
-              <div className="sutra-number-badge">Sūtra {activeSutra.sutraNo}</div>
+              <div className="sutra-number-badge">सूत्रम् {activeSutra.sutraNo}</div>
             </div>
 
             <div className="sutra-content-display">
