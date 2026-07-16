@@ -170,7 +170,7 @@ function App() {
             className="btn-toggle" 
             onClick={() => setScript(script === 'devanagari' ? 'iast' : 'devanagari')}
           >
-            📝 {script === 'devanagari' ? 'Devanāgarī' : 'IAST'}
+            📝 {script === 'devanagari' ? 'देवनागरी' : 'IAST'}
           </button>
 
           {/* Theme Toggler */}
