@@ -302,11 +302,6 @@ function App() {
                 {transliterateIfNeeded(activeSutra.textDevanagari, script)}
               </div>
             </div>
-
-            <div className="sutra-translation-box">
-              <div className="translation-label">English Translation</div>
-              <div className="translation-text">{activeSutra.translation}</div>
-            </div>
           </article>
 
           {/* Commentaries Card */}

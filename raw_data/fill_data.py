@@ -16,8 +16,9 @@ def clean_commentary(text):
     text = text.replace(r'\begin{center}', '')
     text = text.replace(r'\end{center}', '')
     text = text.replace(r'\hrulefill', '')
-    
-    # Convert forced line breaks '\\' to newlines
+    # Convert forced line breaks followed by newlines to a single newline
+    text = re.sub(r'\\\\\s*\n', '\n', text)
+    # Convert any other forced line breaks to newlines
     text = text.replace(r'\\', '\n')
     
     # Clean up horizontal spacing on each line but preserve the newlines
