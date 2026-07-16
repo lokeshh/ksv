@@ -453,6 +453,7 @@
   line-height: 1.8;
   color: var(--text-primary);
   text-align: justify;
+  white-space: pre-wrap;
 }
 
 .commentary-text.devanagari {

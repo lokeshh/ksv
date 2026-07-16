@@ -1,3 +1,20 @@
+/* Local Shobhika Web Fonts (OFL Licensed) */
+@font-face {
+  font-family: 'Shobhika';
+  src: url('/fonts/Shobhika-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shobhika';
+  src: url('/fonts/Shobhika-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Default Theme: Dark Mode */
   --bg-page: #0b0f19;
@@ -16,7 +33,7 @@
   --shadow-hover: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
   --scrollbar-thumb: #1e293b;
   
-  --font-sanskrit: 'Mukta', 'Martel', 'Segoe UI', sans-serif;
+  --font-sanskrit: 'Shobhika', 'Mukta', 'Martel', 'Segoe UI', sans-serif;
   --font-ui: 'Poppins', 'Inter', -apple-system, sans-serif;
   
   --transition-speed: 0.25s;

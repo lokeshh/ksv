@@ -7,17 +7,29 @@ def clean_commentary(text):
     for line in lines:
         if '%' in line:
             line = line.split('%')[0]
-        cleaned_lines.append(line)
+        cleaned_lines.append(line.rstrip())
     text = '\n'.join(cleaned_lines)
-    text = text.replace('\n', ' ')
+    
     text = text.replace(r'\emd', '—')
     text = re.sub(r'\\textbf\{([^}]+)\}', r'\1', text)
     text = re.sub(r'\\eng\{([^}]+)\}', r'\1', text)
     text = text.replace(r'\begin{center}', '')
     text = text.replace(r'\end{center}', '')
     text = text.replace(r'\hrulefill', '')
-    text = text.replace(r'\\', ' ')
-    text = re.sub(r'\s+', ' ', text)
+    
+    # Convert forced line breaks '\\' to newlines
+    text = text.replace(r'\\', '\n')
+    
+    # Clean up horizontal spacing on each line but preserve the newlines
+    lines = text.split('\n')
+    final_lines = []
+    for line in lines:
+        clean_line = re.sub(r'[ \t]+', ' ', line).strip()
+        final_lines.append(clean_line)
+    text = '\n'.join(final_lines)
+    
+    # Collapse multiple consecutive blank lines down to a single blank line
+    text = re.sub(r'\n{3,}', '\n\n', text)
     return text.strip()
 
 def main():
@@ -115,11 +127,11 @@ def main():
                 f.write(f"      sutras:\n")
                 for s in pd['sutras']:
                     f.write(f"        - sutraNo: \"{s['sutraNo']}\"\n")
-                    f.write(f"          textDevanagari: \"{s['textDevanagari'].replace('\"', '\\\"')}\"\n")
+                    f.write(f"          textDevanagari: \"{s['textDevanagari'].replace('\\', '\\\\').replace('\"', '\\\"').replace('\n', '\\n')}\"\n")
                     f.write(f"          translation: \"\"\n")
                     f.write(f"          commentaries:\n")
                     for c in s['commentaries']:
-                        clean_text = c['textDevanagari'].replace('\\', '\\\\').replace('\"', '\\\"')
+                        clean_text = c['textDevanagari'].replace('\\', '\\\\').replace('\"', '\\\"').replace('\n', '\\n')
                         f.write(f"            - nameDevanagari: \"{c['nameDevanagari']}\"\n")
                         f.write(f"              authorDevanagari: \"{c['authorDevanagari']}\"\n")
                         f.write(f"              textDevanagari: \"{clean_text}\"\n")
