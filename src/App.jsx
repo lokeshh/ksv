@@ -30,7 +30,16 @@ const transliterateIfNeeded = (text, toScript) => {
 };
 
 function App() {
-  const [activeSutraIndex, setActiveSutraIndex] = useState(0);
+  const [activeSutraIndex, setActiveSutraIndex] = useState(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const index = allSutras.findIndex((s) => s.sutraNo === hash);
+      if (index !== -1) {
+        return index;
+      }
+    }
+    return 0;
+  });
   const [script, setScript] = useState('devanagari'); // 'devanagari' | 'iast'
   const [theme, setTheme] = useState('dark'); // 'dark' | 'light'
   const [activeCommentaryIndex, setActiveCommentaryIndex] = useState(0);
