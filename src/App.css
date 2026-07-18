@@ -338,6 +338,7 @@
   letter-spacing: 0.2px;
   width: 100%;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .sutra-text-main.devanagari {
