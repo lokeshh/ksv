@@ -2047,8 +2047,8 @@
             - nameDevanagari: "लघुवृत्तिः"
               authorDevanagari: "छुच्छुकभट्टः"
               textDevanagari: "अतः एतस्मात्सूत्रात्परमनन्तरं येप्रत्ययावक्ष्यन्ते ते विभक्तिसंज्ञाविण्णेयाविज्ञातव्याः तेचद्व्यादिगणवर्जितात्सर्वनाम्नः किंबहुशब्दाभ्यां च परः स्मृताः पूर्वाचार्यैः ततः तत्र कुत- कुत्र बहुतः बहुत्र विभक्तित्वात्त्यदादित्वम्।\n\n६५, १११"
-- prakaranaId: "nama"
-  prakaranaNameDevanagari: "नाम-प्रकरणम्"
+- prakaranaId: "akhyata"
+  prakaranaNameDevanagari: "आख्यात-प्रकरणम्"
   padas:
     - padaId: "3-1"
       padaNo: "3.1"
