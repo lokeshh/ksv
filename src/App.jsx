@@ -164,6 +164,15 @@ function App() {
           </div>
         </div>
 
+        <div className="header-middle">
+          <div className={`mangalasloka-line ${script}`}>
+            {transliterateIfNeeded("नमः शिवाय निश्शेषक्लेषप्रशमशालिने।", script)}
+          </div>
+          <div className={`mangalasloka-line ${script}`}>
+            {transliterateIfNeeded("त्रिगुणग्रन्थिदुर्भेदभवबन्धविभेदिने॥", script)}
+          </div>
+        </div>
+
         <div className="header-controls">
           {/* Mobile hamburger menu toggle */}
           <button 
