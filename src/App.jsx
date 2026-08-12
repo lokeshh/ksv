@@ -159,7 +159,7 @@ function App() {
       <header className="app-header">
         <div className="header-brand">
           <div className="header-logo">कातन्त्रम्</div>
-          <div className="header-subtitle">
+          <div className={`header-subtitle ${script}`}>
             {transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, script)}
           </div>
         </div>
@@ -218,12 +218,12 @@ function App() {
           <div className="sidebar-scroll">
             {katantraData.map((prakarana) => (
               <div key={prakarana.prakaranaId} className="prakarana-group">
-                <div className="prakarana-title-node">
+                <div className={`prakarana-title-node ${script}`}>
                   {transliterateIfNeeded(prakarana.prakaranaNameDevanagari, script)}
                 </div>
                 {prakarana.padas.map((pada) => (
                   <div key={pada.padaId} className="pada-group">
-                    <div className="pada-title-node">
+                    <div className={`pada-title-node ${script}`}>
                       {script === 'devanagari' 
                         ? `${pada.padaNameDevanagari} (${pada.padaNo})` 
                         : `${transliterateIfNeeded(pada.padaNameDevanagari, 'sharada')} (${pada.padaNo})`}
@@ -234,7 +234,7 @@ function App() {
                         return (
                           <button
                             key={sutra.sutraNo}
-                            className={`sutra-item-btn ${activeSutraIndex === globalIndex ? 'active' : ''}`}
+                            className={`sutra-item-btn ${activeSutraIndex === globalIndex ? 'active' : ''} ${script}`}
                             onClick={() => {
                               setActiveSutraIndex(globalIndex);
                               setMobileSidebarOpen(false); // Close drawer on mobile click
@@ -259,7 +259,7 @@ function App() {
             <div className="selector-group">
               <label>प्रकरणम्</label>
               <select 
-                className="custom-select" 
+                className={`custom-select ${script}`} 
                 value={activeSutra.prakaranaId} 
                 onChange={handlePrakaranaChange}
               >
@@ -274,7 +274,7 @@ function App() {
             <div className="selector-group">
               <label>पादः</label>
               <select 
-                className="custom-select" 
+                className={`custom-select ${script}`} 
                 value={activeSutra.padaId} 
                 onChange={handlePadaChange}
               >
@@ -291,7 +291,7 @@ function App() {
             <div className="selector-group">
               <label>सूत्रम्</label>
               <select 
-                className="custom-select" 
+                className={`custom-select ${script}`} 
                 value={activeSutra.sutraNo} 
                 onChange={handleSutraChange}
               >
@@ -307,7 +307,7 @@ function App() {
           {/* Active Sutra Reading Card */}
           <article className="sutra-card">
             <div className="sutra-card-header">
-              <div className="prakarana-badge">
+              <div className={`prakarana-badge ${script}`}>
                 {script === 'devanagari' 
                   ? `${activeSutra.prakaranaNameDevanagari} • ${activeSutra.padaNameDevanagari}` 
                   : `${transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, 'sharada')} • ${transliterateIfNeeded(activeSutra.padaNameDevanagari, 'sharada')}`}
@@ -329,7 +329,7 @@ function App() {
                 {activeSutra.commentaries.map((comm, idx) => (
                   <button
                     key={idx}
-                    className={`commentary-tab-btn ${activeCommentaryIndex === idx ? 'active' : ''}`}
+                    className={`commentary-tab-btn ${activeCommentaryIndex === idx ? 'active' : ''} ${script}`}
                     onClick={() => setActiveCommentaryIndex(idx)}
                   >
                     {transliterateIfNeeded(comm.nameDevanagari, script)}
@@ -339,7 +339,7 @@ function App() {
               {activeSutra.commentaries[activeCommentaryIndex] && (
                 <div className="commentary-meta-author">
                   <span>Author:</span>
-                  <span className="author-name-highlight">
+                  <span className={`author-name-highlight ${script}`}>
                     {transliterateIfNeeded(activeSutra.commentaries[activeCommentaryIndex].authorDevanagari, script)}
                   </span>
                 </div>

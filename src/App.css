@@ -500,7 +500,7 @@
 .commentary-text.sharada {
   font-family: var(--font-sharada);
   font-size: 1.2rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 /* Navigation Footer */
