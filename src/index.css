@@ -15,6 +15,15 @@
   font-display: swap;
 }
 
+/* Local Satisar Sharada Font (OFL Licensed) */
+@font-face {
+  font-family: 'Satisar';
+  src: url('/fonts/Sharada.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Default Theme: Dark Mode */
   --bg-page: #0b0f19;
@@ -34,6 +43,7 @@
   --scrollbar-thumb: #1e293b;
   
   --font-sanskrit: 'Shobhika', 'Mukta', 'Martel', 'Segoe UI', sans-serif;
+  --font-sharada: 'Satisar', sans-serif;
   --font-ui: 'Poppins', 'Inter', -apple-system, sans-serif;
   
   --transition-speed: 0.25s;
@@ -101,9 +111,8 @@ body {
   font-weight: 500;
 }
 
-.iast {
-  font-family: var(--font-ui);
+.sharada {
+  font-family: var(--font-sharada);
   line-height: 1.6;
-  font-style: italic;
-  letter-spacing: 0.3px;
+  font-style: normal;
 }

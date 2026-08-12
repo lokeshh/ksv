@@ -72,9 +72,8 @@
   font-weight: 500;
 }
 
-.mangalasloka-line.iast {
-  font-family: var(--font-ui);
-  font-style: italic;
+.mangalasloka-line.sharada {
+  font-family: var(--font-sharada);
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
@@ -380,8 +379,9 @@
   font-size: 2.5rem;
 }
 
-.sutra-text-main.iast {
-  font-size: 1.85rem;
+.sutra-text-main.sharada {
+  font-family: var(--font-sharada);
+  font-size: 2.2rem;
   font-style: normal;
   border-left: 4px solid var(--accent);
   padding-left: 1.25rem;
@@ -497,8 +497,9 @@
   word-spacing: 2px;
 }
 
-.commentary-text.iast {
-  font-size: 1.05rem;
+.commentary-text.sharada {
+  font-family: var(--font-sharada);
+  font-size: 1.2rem;
   color: var(--text-secondary);
 }
 
@@ -633,8 +634,8 @@
     font-size: 1.85rem;
   }
   
-  .sutra-text-main.iast {
-    font-size: 1.4rem;
+  .sutra-text-main.sharada {
+    font-size: 1.6rem;
   }
   
   .commentary-card {

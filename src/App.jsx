@@ -23,8 +23,8 @@ katantraData.forEach((prakarana) => {
 // Dynamic script transliteration helper
 const transliterateIfNeeded = (text, toScript) => {
   if (!text) return '';
-  if (toScript === 'iast') {
-    return Sanscript.t(text, 'devanagari', 'iast');
+  if (toScript === 'sharada') {
+    return Sanscript.t(text, 'devanagari', 'sharada');
   }
   return text;
 };
@@ -40,7 +40,7 @@ function App() {
     }
     return 0;
   });
-  const [script, setScript] = useState('devanagari'); // 'devanagari' | 'iast'
+  const [script, setScript] = useState('devanagari'); // 'devanagari' | 'sharada'
   const [theme, setTheme] = useState('dark'); // 'dark' | 'light'
   const [activeCommentaryIndex, setActiveCommentaryIndex] = useState(0);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -186,9 +186,9 @@ function App() {
           {/* Script Toggler */}
           <button 
             className="btn-toggle" 
-            onClick={() => setScript(script === 'devanagari' ? 'iast' : 'devanagari')}
+            onClick={() => setScript(script === 'devanagari' ? 'sharada' : 'devanagari')}
           >
-            📝 {script === 'devanagari' ? 'देवनागरी' : 'IAST'}
+            📝 {script === 'devanagari' ? 'देवनागरी' : 'शारदा'}
           </button>
 
           {/* Theme Toggler */}
@@ -226,7 +226,7 @@ function App() {
                     <div className="pada-title-node">
                       {script === 'devanagari' 
                         ? `${pada.padaNameDevanagari} (${pada.padaNo})` 
-                        : `${transliterateIfNeeded(pada.padaNameDevanagari, 'iast')} (${pada.padaNo})`}
+                        : `${transliterateIfNeeded(pada.padaNameDevanagari, 'sharada')} (${pada.padaNo})`}
                     </div>
                     <div className="sutra-list-node">
                       {pada.sutras.map((sutra) => {
@@ -282,7 +282,7 @@ function App() {
                   <option key={pada.padaId} value={pada.padaId}>
                     {script === 'devanagari' 
                       ? `${pada.padaNameDevanagari} (${pada.padaNo})` 
-                      : `${transliterateIfNeeded(pada.padaNameDevanagari, 'iast')} (${pada.padaNo})`}
+                      : `${transliterateIfNeeded(pada.padaNameDevanagari, 'sharada')} (${pada.padaNo})`}
                   </option>
                 ))}
               </select>
@@ -310,7 +310,7 @@ function App() {
               <div className="prakarana-badge">
                 {script === 'devanagari' 
                   ? `${activeSutra.prakaranaNameDevanagari} • ${activeSutra.padaNameDevanagari}` 
-                  : `${transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, 'iast')} • ${transliterateIfNeeded(activeSutra.padaNameDevanagari, 'iast')}`}
+                  : `${transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, 'sharada')} • ${transliterateIfNeeded(activeSutra.padaNameDevanagari, 'sharada')}`}
               </div>
               <div className="sutra-number-badge">सूत्रम् {activeSutra.sutraNo}</div>
             </div>
