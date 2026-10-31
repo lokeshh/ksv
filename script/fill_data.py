@@ -58,16 +58,16 @@ def main():
         sec_idx += 1
         if "सन्धि" in sec_name:
             prakarana_id = "sandhi"
-            prakarana_name = "सन्धि-प्रकरणम्"
+            prakarana_name = "सन्धिप्रकरणम्"
         elif "नाम" in sec_name:
             prakarana_id = "nama"
-            prakarana_name = "नाम-प्रकरणम्"
+            prakarana_name = "नामप्रकरणम्"
         elif "आख्यात" in sec_name:
             prakarana_id = "akhyata"
-            prakarana_name = "आख्यात-प्रकरणम्"
+            prakarana_name = "आख्यातप्रकरणम्"
         elif "कृदन्त" in sec_name:
             prakarana_id = "kridanta"
-            prakarana_name = "कृदन्त-प्रकरणम्"
+            prakarana_name = "कृदन्तप्रकरणम्"
         else:
             prakarana_id = f"prakarana_{sec_idx}"
             prakarana_name = sec_name

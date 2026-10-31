@@ -1,3 +1,36 @@
+/* Local Siddhanta Web Font for Devanagari */
+@font-face {
+  font-family: 'Siddhanta';
+  src: url('/fonts/siddhanta-vyakarana.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siddhanta';
+  src: url('/fonts/siddhanta-vyakarana.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siddhanta';
+  src: url('/fonts/siddhanta-vyakarana.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Siddhanta';
+  src: url('/fonts/siddhanta-vyakarana.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Local Shobhika Web Fonts (OFL Licensed) */
 @font-face {
   font-family: 'Shobhika';
@@ -25,32 +58,7 @@
 }
 
 :root {
-  /* Default Theme: Dark Mode */
-  --bg-page: #0b0f19;
-  --bg-panel: #131b2e;
-  --bg-panel-hover: #1e2942;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent: #6366f1;
-  --accent-secondary: #3b82f6;
-  --accent-gradient: linear-gradient(135deg, #6366f1, #3b82f6);
-  --accent-light: rgba(99, 102, 241, 0.15);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-color-active: rgba(99, 102, 241, 0.4);
-  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
-  --scrollbar-thumb: #1e293b;
-  
-  --font-sanskrit: 'Shobhika', 'Mukta', 'Martel', 'Segoe UI', sans-serif;
-  --font-sharada: 'Satisar', sans-serif;
-  --font-ui: 'Poppins', 'Inter', -apple-system, sans-serif;
-  
-  --transition-speed: 0.25s;
-}
-
-:root.light {
-  /* Light Mode Theme */
+  /* Default Theme: Light Mode */
   --bg-page: #f8fafc;
   --bg-panel: #ffffff;
   --bg-panel-hover: #f1f5f9;
@@ -66,6 +74,51 @@
   --shadow: 0 8px 24px rgba(148, 163, 184, 0.15);
   --shadow-hover: 0 12px 36px rgba(148, 163, 184, 0.25);
   --scrollbar-thumb: #cbd5e1;
+  
+  --font-sanskrit: 'Siddhanta', 'Shobhika', 'Mukta', 'Martel', 'Segoe UI', sans-serif;
+  --font-devanagari: 'Siddhanta', 'Shobhika', 'Mukta', 'Martel', 'Segoe UI', sans-serif;
+  --font-sharada: 'Satisar', sans-serif;
+  --font-ui: 'Poppins', 'Inter', -apple-system, sans-serif;
+  
+  --transition-speed: 0.25s;
+}
+
+:root.light {
+  /* Explicit Light Mode */
+  --bg-page: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-panel-hover: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #4f46e5;
+  --accent-secondary: #2563eb;
+  --accent-gradient: linear-gradient(135deg, #4f46e5, #2563eb);
+  --accent-light: rgba(79, 70, 229, 0.08);
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-color-active: rgba(79, 70, 229, 0.4);
+  --shadow: 0 8px 24px rgba(148, 163, 184, 0.15);
+  --shadow-hover: 0 12px 36px rgba(148, 163, 184, 0.25);
+  --scrollbar-thumb: #cbd5e1;
+}
+
+:root.dark {
+  /* Dark Mode Theme */
+  --bg-page: #0b0f19;
+  --bg-panel: #131b2e;
+  --bg-panel-hover: #1e2942;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #6366f1;
+  --accent-secondary: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #6366f1, #3b82f6);
+  --accent-light: rgba(99, 102, 241, 0.15);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-active: rgba(99, 102, 241, 0.4);
+  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+  --scrollbar-thumb: #1e293b;
 }
 
 * {
@@ -109,6 +162,7 @@ body {
   font-family: var(--font-sanskrit);
   line-height: 1.6;
   font-weight: 500;
+  text-rendering: optimizeLegibility;
 }
 
 .sharada {

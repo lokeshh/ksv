@@ -1,5 +1,5 @@
 - prakaranaId: "sandhi"
-  prakaranaNameDevanagari: "सन्धि-प्रकरणम्"
+  prakaranaNameDevanagari: "सन्धिप्रकरणम्"
   padas:
     - padaId: "1-1"
       padaNo: "1.1"
@@ -649,7 +649,7 @@
               authorDevanagari: "छुच्छुकभट्टः"
               textDevanagari: "योगस्य सूत्रवाक्यस्य साधनं पूरणं यत् उपादेयम् तद् अन्यसूत्रेभ्यः संसार्यमनुवत्तनीयम्। यथा जसीत्यस्य योगस्य पूरणं अकारोदीर्घमिति पूर्वसूत्रात् संसार्यते।\n\nइति लघुवृत्तौ सन्धिप्रकरणे निपातपादः षष्ठः॥६॥\n\nसन्धिप्रकरणं समाप्तम्॥॥"
 - prakaranaId: "nama"
-  prakaranaNameDevanagari: "नाम-प्रकरणम्"
+  prakaranaNameDevanagari: "नामप्रकरणम्"
   padas:
     - padaId: "2-1"
       padaNo: "2.1"
@@ -2048,7 +2048,7 @@
               authorDevanagari: "छुच्छुकभट्टः"
               textDevanagari: "अतः एतस्मात्सूत्रात्परमनन्तरं येप्रत्ययावक्ष्यन्ते ते विभक्तिसंज्ञाविण्णेयाविज्ञातव्याः तेचद्व्यादिगणवर्जितात्सर्वनाम्नः किंबहुशब्दाभ्यां च परः स्मृताः पूर्वाचार्यैः ततः तत्र कुत- कुत्र बहुतः बहुत्र विभक्तित्वात्त्यदादित्वम्।\n\n६५, १११"
 - prakaranaId: "akhyata"
-  prakaranaNameDevanagari: "आख्यात-प्रकरणम्"
+  prakaranaNameDevanagari: "आख्यातप्रकरणम्"
   padas:
     - padaId: "3-1"
       padaNo: "3.1"

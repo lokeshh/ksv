@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import katantraData from './data/katantra-data.yaml';
 import Sanscript from '@indic-transliteration/sanscript';
+import PeacockLogo from './components/PeacockLogo';
 import './App.css';
 
 // Flatten the hierarchical Katantra data to make linear navigation (next/prev) simple
@@ -29,11 +30,35 @@ const transliterateIfNeeded = (text, toScript) => {
   return text;
 };
 
+// Convert ASCII digits (0-9) to Devanagari numerals (०-९)
+const toDevanagariNumerals = (val) => {
+  if (val === null || val === undefined) return '';
+  const devDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+  return String(val).replace(/[0-9]/g, (d) => devDigits[d]);
+};
+
+// Convert Devanagari numerals (०-९) back to ASCII digits (0-9) for indexing/hashes
+const toAsciiNumerals = (val) => {
+  if (val === null || val === undefined) return '';
+  return String(val).replace(/[०-९]/g, (d) => '०१२३४५६७८९'.indexOf(d));
+};
+
+// Format counting numbers according to script
+const formatNumber = (num, toScript) => {
+  const dev = toDevanagariNumerals(num);
+  if (toScript === 'sharada') {
+    return transliterateIfNeeded(dev, 'sharada');
+  }
+  return dev;
+};
+
 function App() {
   const [activeSutraIndex, setActiveSutraIndex] = useState(() => {
     const hash = window.location.hash.substring(1);
     if (hash) {
-      const index = allSutras.findIndex((s) => s.sutraNo === hash);
+      const decoded = decodeURIComponent(hash);
+      const normalized = toAsciiNumerals(decoded);
+      const index = allSutras.findIndex((s) => s.sutraNo === normalized || s.sutraNo === decoded);
       if (index !== -1) {
         return index;
       }
@@ -41,7 +66,7 @@ function App() {
     return 0;
   });
   const [script, setScript] = useState('devanagari'); // 'devanagari' | 'sharada'
-  const [theme, setTheme] = useState('dark'); // 'dark' | 'light'
+  const [theme, setTheme] = useState('light'); // 'dark' | 'light'
   const [activeCommentaryIndex, setActiveCommentaryIndex] = useState(0);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -62,7 +87,9 @@ function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.substring(1); // Remove the '#'
       if (hash) {
-        const index = allSutras.findIndex((s) => s.sutraNo === hash);
+        const decoded = decodeURIComponent(hash);
+        const normalized = toAsciiNumerals(decoded);
+        const index = allSutras.findIndex((s) => s.sutraNo === normalized || s.sutraNo === decoded);
         if (index !== -1) {
           setActiveSutraIndex(index);
         }
@@ -80,7 +107,9 @@ function App() {
   useEffect(() => {
     if (activeSutra) {
       const currentHash = window.location.hash.substring(1);
-      if (currentHash !== activeSutra.sutraNo) {
+      const decoded = decodeURIComponent(currentHash);
+      const normalized = toAsciiNumerals(decoded);
+      if (normalized !== activeSutra.sutraNo) {
         window.location.hash = activeSutra.sutraNo;
       }
     }
@@ -158,6 +187,9 @@ function App() {
       {/* Header */}
       <header className="app-header">
         <div className="header-brand">
+          <div className="header-logo-badge" title="कलापक-मयूरः | Kātantra Peacock Symbol">
+            <PeacockLogo size={34} />
+          </div>
           <div className="header-logo">कातन्त्रम्</div>
           <div className={`header-subtitle ${script}`}>
             {transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, script)}
@@ -185,7 +217,7 @@ function App() {
 
           {/* Script Toggler */}
           <button 
-            className="btn-toggle" 
+            className={`btn-toggle ${script}`} 
             onClick={() => setScript(script === 'devanagari' ? 'sharada' : 'devanagari')}
           >
             📝 {script === 'devanagari' ? 'देवनागरी' : 'शारदा'}
@@ -213,7 +245,7 @@ function App() {
         {/* Sidebar Index */}
         <aside className={`app-sidebar ${mobileSidebarOpen ? 'open' : ''}`}>
           <div className="sidebar-header">
-            <div className="sidebar-title">📖 सूत्र-सूची (Sutra Index)</div>
+            <div className="sidebar-title">📖 सूत्रसूची (Sutra Index)</div>
           </div>
           <div className="sidebar-scroll">
             {katantraData.map((prakarana) => (
@@ -224,9 +256,7 @@ function App() {
                 {prakarana.padas.map((pada) => (
                   <div key={pada.padaId} className="pada-group">
                     <div className={`pada-title-node ${script}`}>
-                      {script === 'devanagari' 
-                        ? `${pada.padaNameDevanagari} (${pada.padaNo})` 
-                        : `${transliterateIfNeeded(pada.padaNameDevanagari, 'sharada')} (${pada.padaNo})`}
+                      {transliterateIfNeeded(pada.padaNameDevanagari, script)} ({formatNumber(pada.padaNo, script)})
                     </div>
                     <div className="sutra-list-node">
                       {pada.sutras.map((sutra) => {
@@ -240,7 +270,7 @@ function App() {
                               setMobileSidebarOpen(false); // Close drawer on mobile click
                             }}
                           >
-                            {sutra.sutraNo} - {transliterateIfNeeded(sutra.textDevanagari, script)}
+                            {formatNumber(sutra.sutraNo, script)} - {transliterateIfNeeded(sutra.textDevanagari, script)}
                           </button>
                         );
                       })}
@@ -280,9 +310,7 @@ function App() {
               >
                 {currentPrakarana.padas.map((pada) => (
                   <option key={pada.padaId} value={pada.padaId}>
-                    {script === 'devanagari' 
-                      ? `${pada.padaNameDevanagari} (${pada.padaNo})` 
-                      : `${transliterateIfNeeded(pada.padaNameDevanagari, 'sharada')} (${pada.padaNo})`}
+                    {transliterateIfNeeded(pada.padaNameDevanagari, script)} ({formatNumber(pada.padaNo, script)})
                   </option>
                 ))}
               </select>
@@ -297,7 +325,7 @@ function App() {
               >
                 {currentPada.sutras.map((s) => (
                   <option key={s.sutraNo} value={s.sutraNo}>
-                    {s.sutraNo} - {transliterateIfNeeded(s.textDevanagari, script)}
+                    {formatNumber(s.sutraNo, script)} - {transliterateIfNeeded(s.textDevanagari, script)}
                   </option>
                 ))}
               </select>
@@ -308,11 +336,11 @@ function App() {
           <article className="sutra-card">
             <div className="sutra-card-header">
               <div className={`prakarana-badge ${script}`}>
-                {script === 'devanagari' 
-                  ? `${activeSutra.prakaranaNameDevanagari} • ${activeSutra.padaNameDevanagari}` 
-                  : `${transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, 'sharada')} • ${transliterateIfNeeded(activeSutra.padaNameDevanagari, 'sharada')}`}
+                {transliterateIfNeeded(activeSutra.prakaranaNameDevanagari, script)} • {transliterateIfNeeded(activeSutra.padaNameDevanagari, script)}
               </div>
-              <div className="sutra-number-badge">सूत्रम् {activeSutra.sutraNo}</div>
+              <div className={`sutra-number-badge ${script}`}>
+                {transliterateIfNeeded("सूत्रम्", script)} {formatNumber(activeSutra.sutraNo, script)}
+              </div>
             </div>
 
             <div className="sutra-content-display">
